@@ -1,1 +1,77 @@
-Test commit
+
+<!DOCTYPE html>
+<html lang="en" ng-app="livehudApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Live HUD</title>
+
+    <link href="dep/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <script src="dep/jquery-1.11.1.min.js"></script>    
+    <script src="dep/angular-1.5.3.min.js"></script>
+    <script src="dep/angular-animate-1.5.3.min.js"></script>
+    <script src="dep/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="app.js"></script>    
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Seat {{player.seat}} {{stat}}</h3>
+        </div>
+        <div class="modal-body">
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" ng-repeat="item in items" ng-click="$event.preventDefault(); selected.item = item; ok()">{{item}}</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>  
+
+
+  </head>
+
+  <body ng-controller="LiveHudCtrl">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>T/L</th>
+                <th>P/A</th>
+                <th>3B</th>
+                <th>F3B</th>
+                <th>C/F</th>
+                <th>CB</th>
+                <th>R</th>
+              </tr>
+            </thead>
+            <tr ng-repeat="p in players">
+              <td>{{p.seat}}</td>
+              <td ng-click="open(p, 'tight_loose')">{{p.tight_loose}}</td>
+              <td ng-click="open(p, 'passive_aggressive')">{{p.passive_aggressive}}</td>
+              <td ng-click="open(p, 'threebet')">{{p.threebet}}</td>
+              <td ng-click="open(p, 'fold_3bet')">{{p.fold_3bet}}</td>
+              <td ng-click="open(p, 'call_fold')">{{p.call_fold}}</td>
+              <td ng-click="open(p, 'cbet')">{{p.cbet}}</td>
+              <td ng-click="open(p, 'raises')">{{p.raises}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
