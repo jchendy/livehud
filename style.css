@@ -7,3 +7,7 @@ select {
 #equityneeded {
   font-size: 24px;
 }
+
+.separate {
+  border-left: 1px solid #AAAAAA;
+}

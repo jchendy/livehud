@@ -47,12 +47,12 @@
           <form>
             <div class="form-group">
               <label for="potsize">Pot size</label>
-              <input type="text" class="form-control" id="potsize" ng-model="potsize">
+              <input type="number" class="form-control" id="potsize" ng-model="potsize">
             </div>
 
             <div class="form-group">
               <label for="tocall">Amount to call</label>
-              <input type="text" class="form-control" id="tocall" ng-model="tocall">
+              <input type="number" class="form-control" id="tocall" ng-model="tocall">
             </div>
 
             <div class="form-group">
@@ -83,7 +83,7 @@
                 <th>P/A</th>
                 <th>3B</th>
                 <th>F3B</th>
-                <th>C/F</th>
+                <th class="separate">C/F</th>
                 <th>CB</th>
                 <th>R</th>
               </tr>
@@ -94,7 +94,7 @@
               <td ng-click="open(p, 'passive_aggressive')">{{p.passive_aggressive}}</td>
               <td ng-click="open(p, 'threebet')">{{p.threebet}}</td>
               <td ng-click="open(p, 'fold_3bet')">{{p.fold_3bet}}</td>
-              <td ng-click="open(p, 'call_fold')">{{p.call_fold}}</td>
+              <td class="separate" ng-click="open(p, 'call_fold')">{{p.call_fold}}</td>
               <td ng-click="open(p, 'cbet')">{{p.cbet}}</td>
               <td ng-click="open(p, 'raises')">{{p.raises}}</td>
             </tr>
