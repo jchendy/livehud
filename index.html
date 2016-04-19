@@ -38,6 +38,35 @@
     </script>  
 
 
+    <script type="text/ng-template" id="oddsModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Odds calculator</h3>
+        </div>
+        <div class="modal-body">
+          
+          <form>
+            <div class="form-group">
+              <label for="potsize">Pot size</label>
+              <input type="text" class="form-control" id="potsize" ng-model="potsize">
+            </div>
+
+            <div class="form-group">
+              <label for="tocall">Amount to call</label>
+              <input type="text" class="form-control" id="tocall" ng-model="tocall">
+            </div>
+
+            <div class="form-group">
+              <label for="equityneeded">Equity Needed</label>
+              <p id="equityneeded">{{equity() | number : 2}}%</p>
+            </div>            
+          </form>          
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Done</button>
+        </div>
+    </script>      
+
+
   </head>
 
   <body ng-controller="LiveHudCtrl">
@@ -70,6 +99,12 @@
               <td ng-click="open(p, 'raises')">{{p.raises}}</td>
             </tr>
           </table>
+
+          <h3>Tools</h3>
+          
+          <button class="btn" type="button" ng-click="openOdds()">Odds calculator</button>
+
+
         </div>
       </div>
 

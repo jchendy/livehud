@@ -5,8 +5,6 @@ var app = angular.module('livehudApp', [
 
 app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
-  $scope.items = ['1', '2', '3', '4', '5'];
-
   $scope.stats = {
     tight_loose: {
       name: "tight/loose",
@@ -105,6 +103,17 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
     });
   };
 
+  $scope.openOdds = function () {
+
+    var modalInstance = $uibModal.open({
+      animation: false,
+      templateUrl: 'oddsModal.html',
+      controller: 'OddsModalCtrl',
+      size: 'lg',
+      resolve: {}
+    });
+  };  
+
   $scope.players = [];
 
   for(var i = 1; i <= 10; i++) {
@@ -126,15 +135,27 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, 
 
   $scope.items = items;
   $scope.player = player;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
   $scope.stat = stat;
   $scope.stats = stats;
 
   $scope.ok = function (result) {
     player[stat] = result;
-    $uibModalInstance.close($scope.selected.item);
+    $uibModalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+ app.controller('OddsModalCtrl', function ($scope, $uibModalInstance) {
+
+  $scope.equity = function() {
+    return 100 * Number($scope.tocall) / (Number($scope.tocall) + Number($scope.potsize));    
+  }
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
   };
 
   $scope.cancel = function () {
