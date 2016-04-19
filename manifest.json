@@ -1,0 +1,6 @@
+{
+  "name": "Live HUD",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
