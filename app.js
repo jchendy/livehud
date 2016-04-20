@@ -117,7 +117,9 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
   $scope.players = [];
 
   for(var i = 1; i <= 10; i++) {
-    $scope.players.push({seat: i, 
+    var player = localStorage.getItem("player" + i);
+    if(player === null) {
+      player = {seat: i, 
                           tight_loose: '-',                           
                           passive_aggressive: '-',
                           threebet: '-',
@@ -125,7 +127,28 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
                           call_fold: '-',
                           cbet: '-',
                           raises: '-'
-                          });
+                          };
+    } else {
+      player = angular.fromJson(player);
+    }
+    $scope.players.push(player);
+  }
+
+  $scope.clearAll = function() {
+    $scope.players = [];
+    for(var i = 1; i <= 10; i++) {
+      var player = {seat: i, 
+                        tight_loose: '-',                           
+                        passive_aggressive: '-',
+                        threebet: '-',
+                        fold_3bet: '-',
+                        call_fold: '-',
+                        cbet: '-',
+                        raises: '-'
+                        };
+    $scope.players.push(player);
+    localStorage.removeItem("player" + i);
+    }
   }
 
 });
@@ -140,6 +163,7 @@ app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, 
 
   $scope.ok = function (result) {
     player[stat] = result;
+    localStorage.setItem("player" + player.seat, angular.toJson(player));
     $uibModalInstance.close();
   };
 
