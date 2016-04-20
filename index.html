@@ -79,7 +79,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>T/L</th>
+                <th class="separate">T/L</th>
                 <th>P/A</th>
                 <th>3B</th>
                 <th>F3B</th>
@@ -90,13 +90,13 @@
             </thead>
             <tr ng-repeat="p in players">
               <td>{{p.seat}}</td>
-              <td ng-click="open(p, 'tight_loose')">{{p.tight_loose}}</td>
-              <td ng-click="open(p, 'passive_aggressive')">{{p.passive_aggressive}}</td>
-              <td ng-click="open(p, 'threebet')">{{p.threebet}}</td>
-              <td ng-click="open(p, 'fold_3bet')">{{p.fold_3bet}}</td>
-              <td class="separate" ng-click="open(p, 'call_fold')">{{p.call_fold}}</td>
-              <td ng-click="open(p, 'cbet')">{{p.cbet}}</td>
-              <td ng-click="open(p, 'raises')">{{p.raises}}</td>
+              <td class="separate" ng-click="open(p, 'tight_loose')" ng-class="getClass(p.tight_loose)">{{p.tight_loose}}</td>
+              <td ng-click="open(p, 'passive_aggressive')" ng-class="getClass(p.passive_aggressive)">{{p.passive_aggressive}}</td>
+              <td ng-click="open(p, 'threebet')" ng-class="getClass(p.threebet)">{{p.threebet}}</td>
+              <td ng-click="open(p, 'fold_3bet')" ng-class="getClass(p.fold_3bet)">{{p.fold_3bet}}</td>
+              <td class="separate" ng-click="open(p, 'call_fold')" ng-class="getClass(p.call_fold)">{{p.call_fold}}</td>
+              <td ng-click="open(p, 'cbet')" ng-class="getClass(p.cbet)">{{p.cbet}}</td>
+              <td ng-click="open(p, 'raises')" ng-class="getClass(p.raises)">{{p.raises}}</td>
             </tr>
           </table>
 

@@ -79,6 +79,16 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
   }
 
+  $scope.getClass = function(value) {
+    if(value == 1 || value == 5) {
+      return "strongest";
+    } else if (value == 2 || value == 4) {
+      return "strong";
+    } else {
+      return "";
+    }
+  }
+
   $scope.open = function (player, stat) {
 
     var modalInstance = $uibModal.open({
