@@ -14,15 +14,29 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
   $scope.nextspr = (currentspr, betsize, streets = 1) => {
     if (streets === 1) {
-      return (currentspr-betsize)/(1 + 2*betsize);
+      const result = (currentspr-betsize)/(1 + 2*betsize);
+      return Math.max(result, 0);
     }
       return $scope.nextspr($scope.nextspr(currentspr, betsize, 1), betsize, streets - 1);
   };
 
-  $scope.turnpot = (size) => $scope.potsize + $scope.potsize * size * 2;
-  $scope.turnstack = (size) => $scope.stacksize - $scope.potsize * size;
+  $scope.turnpot = (size) => {
+    const result = $scope.potsize + $scope.potsize * size * 2;
+    return Math.max(result, 0);
+  }
+  $scope.turnstack = (size) => {
+    const result = $scope.stacksize - $scope.potsize * size;
+    return Math.max(result, 0);
+  }
 
-  $scope.riverpot = (size) => $scope.turnpot(size) + $scope.turnpot(size) * size * 2;
-  $scope.riverstack = (size) => $scope.turnstack(size) - $scope.turnpot(size) * size;  
+  $scope.riverpot = (size) => {
+    const result = $scope.turnpot(size) + $scope.turnpot(size) * size * 2;
+    return Math.max(result, 0);
+  }
+
+  $scope.riverstack = (size) => {
+    const result = $scope.turnstack(size) - $scope.turnpot(size) * size;
+    return Math.max(result, 0);
+  }
 
 });
