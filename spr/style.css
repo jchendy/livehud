@@ -1,0 +1,22 @@
+select {
+  -webkit-appearance: none;
+  border: 0px;
+  outline: 0px;
+}
+
+#equityneeded {
+  font-size: 24px;
+}
+
+.separate {
+  border-left: 1px solid #AAAAAA;
+}
+
+.strongest {
+  font-weight: bold;
+  background-color: #EEEEEE;
+}
+
+.strong {
+  font-weight: bold;
+}

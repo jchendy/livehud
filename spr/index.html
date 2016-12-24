@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="livehudApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SPR calculator</title>
+
+    <link href="../dep/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+
+    <script src="../dep/jquery-1.11.1.min.js"></script>
+    <script src="../dep/angular-1.5.3.min.js"></script>
+    <script src="../dep/angular-animate-1.5.3.min.js"></script>
+    <script src="../dep/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-controller="LiveHudCtrl">
+
+    <div class="container">
+
+
+
+      <div class="row">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="exampleInputName2">Pot size</label>
+            <input type="text" class="form-control" ng-model="potsize">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">Stack size</label>
+            <input type="text" class="form-control" ng-model="stacksize">
+          </div>
+        </form>
+
+        <h3>Flop SPR: {{spr()}}</h3>
+        <table class="table">
+          <tr>
+            <th>Flop bet size</th>
+            <th>Turn pot / stack / SPR</th>
+            <th>Turn bet size</th>
+            <th>River pot / stack / SPR</th>
+          </tr>
+          <tr ng-repeat="size in [.33, .4, .5, .66, .75, 1, 1.25, 1.5]">
+            <td>{{size | number: 2}} ({{size * potsize | number: 0}})</td>
+            <td>{{turnpot(size) | number: 0}} / {{turnstack(size) | number: 0}} / {{nextspr(spr(), size) | number: 2}}</td>
+            <td>{{size | number: 2}} ({{(potsize + potsize * size * 2) * size | number: 0}})</td>
+            <td>{{riverpot(size) | number: 0}} / {{riverstack(size) | number: 0}} / {{nextspr(spr(), size, 2) | number: 2}}</td>
+          </tr>
+        </table>
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
