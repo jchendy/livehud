@@ -24,6 +24,7 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
     const result = $scope.potsize + $scope.potsize * size * 2;
     return $scope.constrain(result, 0, $scope.maxpot());
   }
+
   $scope.turnstack = (size) => {
     const result = $scope.stacksize - $scope.potsize * size;
     return Math.max(result, 0);
@@ -50,5 +51,7 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
     }
     return num;
   }
+
+  $scope.getClass = (spr) => spr > .75 && spr < 1.15 ? "shove" : "";
 
 });

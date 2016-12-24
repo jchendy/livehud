@@ -50,9 +50,9 @@
           </tr>
           <tr ng-repeat="size in [.33, .4, .5, .66, .75, 1, 1.25, 1.5]">
             <td>{{size | number: 2}} ({{size * potsize | number: 0}})</td>
-            <td>{{turnpot(size) | number: 0}} / {{turnstack(size) | number: 0}} / {{nextspr(spr(), size) | number: 2}}</td>
+            <td ng-class="getClass(nextspr(spr(), size))">{{turnpot(size) | number: 0}} / {{turnstack(size) | number: 0}} / {{nextspr(spr(), size) | number: 1}}</td>
             <td>{{size | number: 2}} ({{(potsize + potsize * size * 2) * size | number: 0}})</td>
-            <td>{{riverpot(size) | number: 0}} / {{riverstack(size) | number: 0}} / {{nextspr(spr(), size, 2) | number: 2}}</td>
+            <td ng-class="getClass(nextspr(spr(), size, 2))">{{riverpot(size) | number: 0}} / {{riverstack(size) | number: 0}} / {{nextspr(spr(), size, 2) | number: 1}}</td>
           </tr>
         </table>
       </div>
