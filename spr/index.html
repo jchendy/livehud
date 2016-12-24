@@ -32,15 +32,15 @@
         <form class="form-inline">
           <div class="form-group">
             <label for="exampleInputName2">Pot size</label>
-            <input type="text" class="form-control" ng-model="potsize">
+            <input type="number" class="form-control" ng-model="potsize">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail2">Stack size</label>
-            <input type="text" class="form-control" ng-model="stacksize">
+            <input type="number" class="form-control" ng-model="stacksize">
           </div>
         </form>
 
-        <h3>Flop SPR: {{spr()}}</h3>
+        <h3>Flop SPR: {{spr() | number: 1}}</h3>
         <table class="table">
           <tr>
             <th>Flop bet size</th>

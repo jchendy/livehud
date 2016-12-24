@@ -6,7 +6,7 @@ var app = angular.module('livehudApp', [
 app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
   $scope.potsize = 40;
-  $scope.stacksize = 260;
+  $scope.stacksize = 280;
 
   $scope.spr = () => {
     return $scope.stacksize / $scope.potsize;
@@ -22,7 +22,7 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
   $scope.turnpot = (size) => {
     const result = $scope.potsize + $scope.potsize * size * 2;
-    return Math.max(result, 0);
+    return $scope.constrain(result, 0, $scope.maxpot());
   }
   $scope.turnstack = (size) => {
     const result = $scope.stacksize - $scope.potsize * size;
@@ -31,12 +31,24 @@ app.controller('LiveHudCtrl', function ($scope, $uibModal, $sce) {
 
   $scope.riverpot = (size) => {
     const result = $scope.turnpot(size) + $scope.turnpot(size) * size * 2;
-    return Math.max(result, 0);
+    return $scope.constrain(result, 0, $scope.maxpot());
   }
 
   $scope.riverstack = (size) => {
     const result = $scope.turnstack(size) - $scope.turnpot(size) * size;
     return Math.max(result, 0);
+  }
+
+  $scope.maxpot = () => $scope.potsize + $scope.stacksize * 2;
+
+  $scope.constrain = (num, min, max) => {
+    if (num < min) {
+      return min;
+    }
+    if (num > max) {
+      return max;
+    }
+    return num;
   }
 
 });
